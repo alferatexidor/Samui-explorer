@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Samui Explorer — Your Complete Ko Samui Travel Guide</title>
+  <meta name="description" content="Discover the best beaches, restaurants, villas and things to do in Ko Samui. Honest insider guides from people who actually live here.">
+  <meta name="keywords" content="Ko Samui, Koh Samui travel guide, best beaches Samui, restaurants Samui, villas Samui">
+  <link rel="canonical" href="https://www.samuiexplorer.com/">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Samui Explorer — Your Complete Ko Samui Travel Guide">
+  <meta property="og:description" content="Honest insider guides for Ko Samui. Best beaches, restaurants, villas and things to do.">
+  <meta property="og:image" content="https://www.samuiexplorer.com/images/og-home.jpg">
+  <meta property="og:url" content="https://www.samuiexplorer.com/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Homepage-specific styles */
+    .hero {
+      min-height:100vh; background:var(--night);
+      position:relative; overflow:hidden;
+      display:flex; align-items:center;
+    }
+    .hero-bg {
+      position:absolute; inset:0;
+      background-image:url('https://images.unsplash.com/photo-1537956965359-7573183d1f57?w=1600&q=80');
+      background-size:cover; background-position:center;
+    }
+    .hero-bg::after {
+      content:''; position:absolute; inset:0;
+      background:linear-gradient(135deg, rgba(16,24,32,0.82) 0%, rgba(16,24,32,0.5) 60%, rgba(11,140,135,0.2) 100%);
+    }
+    .hero-content {
+      position:relative; z-index:2;
+      max-width:1100px; margin:0 auto; padding:0 4rem; width:100%;
+    }
+    .hero-eyebrow {
+      font-family:'Inconsolata',monospace;
+      font-size:0.72rem; letter-spacing:0.25em; text-transform:uppercase;
+      color:var(--teal-lt); margin-bottom:1.5rem;
+      display:flex; align-items:center; gap:1rem;
+      animation:fadeUp 1s 0.2s both;
+    }
+    .hero-eyebrow::before { content:''; display:block; width:40px; height:1px; background:currentColor; }
+    .hero h1 {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(3.5rem,8vw,7.5rem); font-weight:900;
+      color:var(--cream); line-height:0.92; letter-spacing:-0.03em;
+      animation:fadeUp 1s 0.4s both;
+    }
+    .hero h1 em { font-style:italic; font-weight:400; color:var(--teal-lt); display:block; }
+    .hero-sub {
+      font-size:1.1rem; color:rgba(250,247,242,0.55);
+      max-width:460px; line-height:1.75; margin:2rem 0 3rem;
+      animation:fadeUp 1s 0.6s both;
+    }
+    .hero-btns { display:flex; gap:1rem; animation:fadeUp 1s 0.8s both; }
+    .hero-scroll {
+      position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%);
+      display:flex; flex-direction:column; align-items:center; gap:0.5rem;
+      font-family:'Inconsolata',monospace; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase;
+      color:rgba(250,247,242,0.25); animation:fadeUp 1s 1s both;
+    }
+    .hero-scroll-line { width:1px; height:40px; background:linear-gradient(to bottom,rgba(11,140,135,0.6),transparent); animation:scrollPulse 2s ease-in-out infinite; }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes scrollPulse { 0%,100%{opacity:0.6} 50%{opacity:1} }
+
+    /* Featured section */
+    .featured-section { padding:6rem 4rem; background:var(--cream); }
+    .featured-section .inner { max-width:1100px; margin:0 auto; }
+
+    /* Stats bar */
+    .stats-bar {
+      background:var(--teal); padding:2rem 4rem;
+      display:grid; grid-template-columns:repeat(4,1fr);
+      max-width:100%;
+    }
+    .stat { text-align:center; }
+    .stat-num { font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:900; color:white; }
+    .stat-label { font-family:'Inconsolata',monospace; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-top:0.2rem; }
+
+    /* Category grid section */
+    .categories-section { background:var(--night); padding:6rem 4rem; }
+    .categories-section .inner { max-width:1100px; margin:0 auto; }
+
+    /* Latest articles */
+    .latest-section { padding:6rem 4rem; background:var(--sand); }
+    .latest-section .inner { max-width:1100px; margin:0 auto; }
+    .latest-header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:3rem; }
+
+    @media(max-width:768px) {
+      .hero-content { padding:0 1.5rem; }
+      .stats-bar { grid-template-columns:repeat(2,1fr); padding:2rem 1.5rem; gap:1.5rem; }
+      .featured-section,.categories-section,.latest-section { padding:4rem 1.5rem; }
+      .hero-btns { flex-direction:column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="20" r="18.5" stroke="#0B8C87" stroke-width="1.2"/>
+      <line x1="4" y1="22" x2="36" y2="22" stroke="#0B8C87" stroke-width="0.8" opacity="0.4"/>
+      <path d="M 12 22 A 8 8 0 0 1 28 22" stroke="#C9A84C" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      <circle cx="20" cy="22" r="2" fill="#C9A84C"/>
+      <path d="M 5 27 Q 9 24.5 13 27 Q 17 29.5 20 27 Q 23 24.5 27 27 Q 31 29.5 35 27" stroke="#1DBDB7" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+    </svg>
+    <span class="nav-wordmark">Samui<span>Explorer</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="beaches.html">Beaches</a></li>
+    <li><a href="restaurants.html">Restaurants</a></li>
+    <li><a href="where-to-stay.html">Stay</a></li>
+    <li><a href="things-to-do.html">Things To Do</a></li>
+    <li><a href="beach-clubs.html">Beach Clubs</a></li>
+    <li><a href="travel-tips.html">Travel Tips</a></li>
+    <li><a href="villas.html" class="nav-cta">Villas</a></li>
+  </ul>
+  <div class="nav-hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Ko Samui, Thailand</div>
+    <h1>Find Your<br><em>Island.</em></h1>
+    <p class="hero-sub">Real guides from people who live here. The best beaches, hidden restaurants, and villas worth every baht — no tourist traps.</p>
+    <div class="hero-btns">
+      <a href="blog/best-beaches-koh-samui.html" class="btn btn-primary">Explore Beaches →</a>
+      <a href="travel-tips.html" class="btn btn-outline" style="border-color:rgba(250,247,242,0.3);color:rgba(250,247,242,0.7);">Travel Tips</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Beaches Reviewed</div></div>
+  <div class="stat"><div class="stat-num">120+</div><div class="stat-label">Restaurants Tested</div></div>
+  <div class="stat"><div class="stat-num">80+</div><div class="stat-label">Villas Scouted</div></div>
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Honest Reviews</div></div>
+</div>
+
+<!-- FEATURED GUIDES -->
+<section class="featured-section">
+  <div class="inner">
+    <div class="section-header fade-in">
+      <div class="section-eyebrow">Start Here</div>
+      <h2 class="section-title">Our Most <em>Popular Guides</em></h2>
+      <p class="section-lead">Everything you need to plan the perfect Ko Samui trip — written by people who know the island inside out.</p>
+    </div>
+    <div class="card-grid fade-in">
+      <div class="card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=600&q=80" alt="Best Beaches Ko Samui" loading="lazy">
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Beaches</span>
+          <h3>Best Beaches in Ko Samui</h3>
+          <p>From Chaweng to Silver Beach — every beach ranked honestly, including the ones we almost kept secret.</p>
+        </div>
+        <div class="card-footer">
+          <span>8 min read</span>
+          <a href="blog/best-beaches-koh-samui.html">Read Guide →</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80" alt="Best Villas Ko Samui" loading="lazy">
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Villas</span>
+          <h3>Best Villas to Rent in Ko Samui</h3>
+          <p>Pool villas, hillside retreats, and beachfront gems. Real reviews, real prices.</p>
+        </div>
+        <div class="card-footer">
+          <span>6 min read</span>
+          <a href="blog/best-villas-koh-samui.html">Read Guide →</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1559314809-0d155014e29e?w=600&q=80" alt="Best Restaurants Ko Samui" loading="lazy">
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Restaurants</span>
+          <h3>Best Restaurants in Ko Samui</h3>
+          <p>Street food at 80 baht to beachfront dining at sunset. The full eating guide.</p>
+        </div>
+        <div class="card-footer">
+          <span>7 min read</span>
+          <a href="blog/best-restaurants-koh-samui.html">Read Guide →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORY GRID -->
+<section class="categories-section">
+  <div class="inner">
+    <div class="section-header fade-in" style="margin-bottom:2.5rem;">
+      <div class="section-eyebrow" style="color:var(--teal-lt);">Explore by Category</div>
+      <h2 class="section-title" style="color:var(--cream);">Everything <em>Samui</em></h2>
+    </div>
+  </div>
+  <div class="category-grid fade-in">
+    <a href="beaches.html" class="category-card" style="text-decoration:none;">
+      <div class="category-card-bg" style="background-image:url('https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=600&q=80')"></div>
+      <div class="category-card-arrow">→</div>
+      <div class="category-card-body">
+        <span class="category-card-tag">Explore</span>
+        <h3>Beaches</h3>
+      </div>
+    </a>
+    <a href="restaurants.html" class="category-card" style="text-decoration:none;">
+      <div class="category-card-bg" style="background-image:url('https://images.unsplash.com/photo-1559314809-0d155014e29e?w=600&q=80')"></div>
+      <div class="category-card-arrow">→</div>
+      <div class="category-card-body">
+        <span class="category-card-tag">Eat &amp; Drink</span>
+        <h3>Restaurants</h3>
+      </div>
+    </a>
+    <a href="where-to-stay.html" class="category-card" style="text-decoration:none;">
+      <div class="category-card-bg" style="background-image:url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80')"></div>
+      <div class="category-card-arrow">→</div>
+      <div class="category-card-body">
+        <span class="category-card-tag">Sleep</span>
+        <h3>Where to Stay</h3>
+      </div>
+    </a>
+    <a href="things-to-do.html" class="category-card" style="text-decoration:none;">
+      <div class="category-card-bg" style="background-image:url('https://images.unsplash.com/photo-1514214246283-d427a95c5d2f?w=600&q=80')"></div>
+      <div class="category-card-arrow">→</div>
+      <div class="category-card-body">
+        <span class="category-card-tag">Activities</span>
+        <h3>Things To Do</h3>
+      </div>
+    </a>
+    <a href="beach-clubs.html" class="category-card" style="text-decoration:none;">
+      <div class="category-card-bg" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80')"></div>
+      <div class="category-card-arrow">→</div>
+      <div class="category-card-body">
+        <span class="category-card-tag">Vibes</span>
+        <h3>Beach Clubs</h3>
+      </div>
+    </a>
+    <a href="travel-tips.html" class="category-card" style="text-decoration:none;">
+      <div class="category-card-bg" style="background-image:url('https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=600&q=80')"></div>
+      <div class="category-card-arrow">→</div>
+      <div class="category-card-body">
+        <span class="category-card-tag">Plan</span>
+        <h3>Travel Tips</h3>
+      </div>
+    </a>
+    <a href="villas.html" class="category-card" style="text-decoration:none;">
+      <div class="category-card-bg" style="background-image:url('https://images.unsplash.com/photo-1596436195613-e33e6e6d5c43?w=600&q=80')"></div>
+      <div class="category-card-arrow">→</div>
+      <div class="category-card-body">
+        <span class="category-card-tag">Luxury</span>
+        <h3>Villas</h3>
+      </div>
+    </a>
+    <a href="blog/koh-samui-travel-guide.html" class="category-card" style="text-decoration:none;">
+      <div class="category-card-bg" style="background:linear-gradient(135deg,var(--night),var(--night2))"></div>
+      <div class="category-card-arrow">→</div>
+      <div class="category-card-body">
+        <span class="category-card-tag">Essential</span>
+        <h3>Full Travel Guide</h3>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- LATEST ARTICLES -->
+<section class="latest-section">
+  <div class="inner">
+    <div class="latest-header fade-in">
+      <div>
+        <div class="section-eyebrow">Fresh from the Island</div>
+        <h2 class="section-title">Latest <em>Guides</em></h2>
+      </div>
+      <a href="blog/" class="btn btn-outline">All Articles →</a>
+    </div>
+    <div class="card-grid fade-in">
+      <div class="card">
+        <div class="card-img"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80" alt="Sunset Spots Ko Samui" loading="lazy"></div>
+        <div class="card-body">
+          <span class="card-tag">Beaches</span>
+          <h3>Best Sunset Spots in Ko Samui</h3>
+          <p>Lipa Noi faces west. The sunsets are genuinely ridiculous. Here's where to be at golden hour.</p>
+        </div>
+        <div class="card-footer"><span>5 min read</span><a href="blog/best-sunset-spots-koh-samui.html">Read →</a></div>
+      </div>
+      <div class="card">
+        <div class="card-img"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&q=80" alt="Best Cafes Ko Samui" loading="lazy"></div>
+        <div class="card-body">
+          <span class="card-tag">Cafés</span>
+          <h3>Best Cafés in Ko Samui</h3>
+          <p>Great coffee, fast WiFi, and a view worth lingering over. The full café guide.</p>
+        </div>
+        <div class="card-footer"><span>4 min read</span><a href="blog/best-cafes-koh-samui.html">Read →</a></div>
+      </div>
+      <div class="card">
+        <div class="card-img"><img src="https://images.unsplash.com/photo-1468746587034-766ade880c0e?w=600&q=80" alt="Hidden Beaches Ko Samui" loading="lazy"></div>
+        <div class="card-body">
+          <span class="card-tag">Hidden Gems</span>
+          <h3>Hidden Beaches in Ko Samui</h3>
+          <p>The beaches we almost didn't publish. Secret coves, empty sands, no vendors in sight.</p>
+        </div>
+        <div class="card-footer"><span>6 min read</span><a href="blog/hidden-beaches-koh-samui.html">Read →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<div class="newsletter-strip">
+  <div>
+    <div class="newsletter-eyebrow">Stay in the Loop</div>
+    <h3>The <em>Samui Explorer</em><br>Newsletter</h3>
+    <p>New guides, hidden spots, and seasonal tips — straight to your inbox. No spam.</p>
+  </div>
+  <div>
+    <div class="nl-form">
+      <input class="nl-input" type="email" placeholder="your@email.com">
+      <button class="nl-btn">Subscribe →</button>
+    </div>
+    <p class="nl-disclaimer">* Some links on this site are affiliate links. We may earn a small commission at no extra cost to you.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo" style="margin-bottom:1rem;display:inline-flex;">
+        <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="18.5" stroke="#0B8C87" stroke-width="1.2"/>
+          <line x1="4" y1="22" x2="36" y2="22" stroke="#0B8C87" stroke-width="0.8" opacity="0.4"/>
+          <path d="M 12 22 A 8 8 0 0 1 28 22" stroke="#C9A84C" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+          <circle cx="20" cy="22" r="2" fill="#C9A84C"/>
+          <path d="M 5 27 Q 9 24.5 13 27 Q 17 29.5 20 27 Q 23 24.5 27 27 Q 31 29.5 35 27" stroke="#1DBDB7" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+        </svg>
+        <span class="nav-wordmark" style="color:var(--cream);">Samui<span>Explorer</span></span>
+      </a>
+      <p>Honest insider guides for Ko Samui — written by people who actually live here, not a content farm.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Explore</h5>
+      <ul>
+        <li><a href="beaches.html">Beaches</a></li>
+        <li><a href="restaurants.html">Restaurants</a></li>
+        <li><a href="where-to-stay.html">Where to Stay</a></li>
+        <li><a href="things-to-do.html">Things To Do</a></li>
+        <li><a href="beach-clubs.html">Beach Clubs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Guides</h5>
+      <ul>
+        <li><a href="blog/best-beaches-koh-samui.html">Best Beaches</a></li>
+        <li><a href="blog/best-restaurants-koh-samui.html">Best Restaurants</a></li>
+        <li><a href="blog/best-villas-koh-samui.html">Best Villas</a></li>
+        <li><a href="blog/hidden-beaches-koh-samui.html">Hidden Beaches</a></li>
+        <li><a href="blog/koh-samui-travel-guide.html">Travel Guide</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>More</h5>
+      <ul>
+        <li><a href="travel-tips.html">Travel Tips</a></li>
+        <li><a href="villas.html">Villas</a></li>
+        <li><a href="blog/best-sunset-spots-koh-samui.html">Sunset Spots</a></li>
+        <li><a href="blog/best-cafes-koh-samui.html">Best Cafés</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 SamuiExplorer.com — All rights reserved</span>
+    <span>Made with ♥ from Ko Samui</span>
+  </div>
+  <p class="footer-disclaimer">* This site contains affiliate links. We may earn a small commission if you book through our links, at no extra cost to you. All recommendations are genuine and independent.</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
